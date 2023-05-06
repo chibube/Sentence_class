@@ -1,29 +1,107 @@
+
 <html>
+<head>
+    
+	<title>Product Review</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		header {
+			background-color: #0077be;
+			color: #fff;
+			padding: 10px;
+			text-align: center;
+		}
+		h1 {
+			margin: 0;
+		}
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+		.review {
+			border: 1px solid #ccc;
+			padding: 20px;
+			margin-bottom: 20px;
+			display: flex;
+			flex-direction: row;
+			align-items: flex-start;
+		}
+		.review-image {
+			flex: 0 0 200px;
+			margin-right: 20px;
+		}
+		.review-image img {
+			max-width: 100%;
+			height: auto;
+			display: block;
+			margin-bottom: 10px;
+		}
+		.review-content {
+			flex: 1;
+		}
+		.review h2 {
+			margin-top: 0;
+		}
+		.review p {
+			margin: 0;
+			line-height: 1.5;
+		}
+		.review .rating {
+			font-size: 15px;
+			color: #000000;
+			margin: 10px 0;
+		}
+		
+	</style>
+</head>
 <body>
-    <div class="login">
-       <h1>Customer Review Sentiment Prediction</h1>
-   
-       <form action="{{ url_for('predict_sent')}}" method="post">
-            <h1>
-                <legend>Product Review</legend>
-            </h1>
-            <div class="mb-3">
-                <label class="form-label">Your Review</label>
-                <input class="form-control" type="text" name="review" placeholder="Enter your review" required />            
+    <header>
+        Customer Review
+    </header>
+    <div class="container">
+        <div class="review">
+            <div class="review-image">
+                <img src="{{ url_for('static', filename='Trojan.jpg') }}" alt="Product-image">
             </div>
-            <div class="mb-3">
-                <input class="btn btn-primary" type="submit" value="Predict sentiment" required />
+            <div class="review-content">
+            
+                <form action="{{ url_for('predict_sent')}}" method="post">
+                        <h2>
+                            <legend>Product Review</legend>
+                        </h2>
+                        <div class="mb-3">
+                            <input class="rating" type="text" name="review" placeholder="Enter your review" required />            
+                        </div>
+                        <div class="mb-3">
+                            <input class="rating" type="submit" value="Predict sentiment" required />
+                        </div>
+                </form>
+                <div class="rating">
+                    {% if sentiment %}
+                        {% if sentiment == 1 %}
+                        <p>
+                            This is a positive review.
+                        </p>
+                        {% else %}
+                        <p> 
+                            This is a negative review.
+                        </p>
+                        {% endif %}
+                    {% else %}
+                        <p> 
+                            Please provide a review
+                        </p>
+                    {% endif %}
+                </div>
             </div>
-       </form>
+        </div>
     </div>
-    {% if sentiment == 1 %}
-    <h2>
-        This is a positive review.
-    </h2>
-    {% else %}
-    <h2> 
-        This is a negative review.
-    </h2>
-    {% endif %}
 </body>
 </html>
