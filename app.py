@@ -14,10 +14,11 @@ def predict_sent():
     if request.method=='GET':
         return render_template('home.html')
     else:
+        comment = request.form.get('review')
         sentiment_prediction = Prediction_pipeline()
-        sentiment = sentiment_prediction.predict(request.form.get('review'))
+        sentiment = sentiment_prediction.predict(comment)
 
-        return render_template('home.html', sentiment=sentiment)
+        return render_template('home.html', sentiment=sentiment, comment=comment)
 
 
 

@@ -85,14 +85,18 @@
                 </form>
                 <div class="rating">
                     {% if sentiment %}
-                        {% if sentiment == 1 %}
+						<div class="review-content">
+							<button class="rating"> <a href= "{{ url_for('predict_sent')}}">Refresh</a></button>
+						</div>
+                        {% if sentiment == "positive" %}
                         <p>
-                            This is a positive review.
+                            "{{ comment }}".This is a positive review.
                         </p>
                         {% else %}
                         <p> 
-                            This is a negative review.
+                            "{{ comment }}"This is a negative review.
                         </p>
+						
                         {% endif %}
                     {% else %}
                         <p> 
