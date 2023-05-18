@@ -15,10 +15,10 @@ def predict_sent():
         return render_template('home.html')
     else:
         comment = request.form.get('review')
-        sentiment_prediction = Prediction_pipeline()
-        sentiment = sentiment_prediction.predict(comment)
+        class_prediction = Prediction_pipeline()
+        result = class_prediction.predict(comment)
 
-        return render_template('home.html', sentiment=sentiment, comment=comment)
+        return render_template('home.html', category=result, comment=comment)
 
 
 

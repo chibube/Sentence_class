@@ -63,7 +63,7 @@
 </head>
 <body>
     <header>
-        Customer Review
+        Our Life Blog
     </header>
     <div class="container">
         <div class="review">
@@ -74,30 +74,23 @@
             
                 <form action="{{ url_for('predict_sent')}}" method="post">
                         <h2>
-                            <legend>Product Review</legend>
+                            <legend>Share your thoughts</legend>
                         </h2>
                         <div class="mb-3">
                             <input class="rating" type="text" name="review" placeholder="Enter your review" required />            
                         </div>
                         <div class="mb-3">
-                            <input class="rating" type="submit" value="Predict sentiment" required />
+                            <input class="rating" type="submit" value="Predict" required />
                         </div>
                 </form>
                 <div class="rating">
-                    {% if sentiment %}
+                    {% if category %}
 						<div class="review-content">
 							<button class="rating"> <a href= "{{ url_for('predict_sent')}}">Refresh</a></button>
 						</div>
-                        {% if sentiment == "positive" %}
                         <p>
-                            "{{ comment }}".This is a positive review.
+                        "{{ comment }}" is talking about "{{ category }}".
                         </p>
-                        {% else %}
-                        <p> 
-                            "{{ comment }}"This is a negative review.
-                        </p>
-						
-                        {% endif %}
                     {% else %}
                         <p> 
                             Please provide a review

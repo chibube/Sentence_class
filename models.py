@@ -24,9 +24,17 @@ class Prediction_pipeline():
 
         prediction = classifier.predict(scaler.transform(vectorizer(str(review)).vector.reshape(1,300)))
 
-        if prediction.item() == 1:
-            result = "positive"
-        else:
-            result = "negative"
+        if prediction.item() == 0:
+            result = "Arts & Culture"
+        elif prediction.item() == 1:
+            result = "Business & Entrepreneurs"
+        elif prediction.item() == 2:
+            result = "Pop Culture"
+        elif prediction.item() == 3:
+            result = "Daily Life"
+        elif prediction.item() == 4:
+            result = "Sports & Games"
+        elif prediction.item() == 5:
+            result = "Science & Technology"
         
         return result
